@@ -1,0 +1,23 @@
+/* Dump plugin styles */
+
+.dump-status-modal .modal-content {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.dump-status-modal .stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.dump-status-modal .stat-label {
+  font-weight: 600;
+}
+
+.dump-status-modal .recent-activity {
+  margin-top: 12px;
+  font-size: 0.9em;
+  color: var(--text-muted);
+}

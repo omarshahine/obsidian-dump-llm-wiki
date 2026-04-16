@@ -1,0 +1,10 @@
+{
+  "id": "dump-llm-wiki",
+  "name": "Dump LLM Wiki",
+  "version": "1.0.0",
+  "minAppVersion": "1.7.0",
+  "description": "LLM Wiki: Dump URLs, podcasts, and text into a cross-linked knowledge base maintained by AI",
+  "author": "Omar Shahine",
+  "authorUrl": "https://www.omarshahine.com",
+  "isDesktopOnly": true
+}
