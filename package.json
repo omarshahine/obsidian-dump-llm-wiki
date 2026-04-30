@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "node esbuild.config.mjs",
-    "build": "node esbuild.config.mjs production"
+    "build": "node esbuild.config.mjs production",
+    "release": "./scripts/release.sh"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
