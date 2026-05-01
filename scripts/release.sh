@@ -68,7 +68,11 @@ done
 
 echo "==> Committing & tagging"
 git add manifest.json package.json versions.json
-git commit -m "Release $VERSION"
+if ! git diff --cached --quiet; then
+  git commit -m "Release $VERSION"
+else
+  echo "    (version files already at $VERSION, skipping commit)"
+fi
 git tag -a "$VERSION" -m "Release $VERSION"
 
 echo "==> Pushing"
