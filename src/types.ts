@@ -24,6 +24,9 @@ export interface DumpSettings {
   // Transcription
   whisperModel: string;
   openaiApiKey: string;
+
+  // X (Twitter) API — used for x.com / twitter.com URL fetches
+  xBearerToken: string;
 }
 
 export const DEFAULT_SETTINGS: DumpSettings = {
@@ -43,6 +46,8 @@ export const DEFAULT_SETTINGS: DumpSettings = {
 
   whisperModel: "whisper-1",
   openaiApiKey: "",
+
+  xBearerToken: "",
 };
 
 /** CLI availability detected at runtime */

@@ -252,6 +252,21 @@ export class DumpSettingTab extends PluginSettingTab {
         }));
 
     // ═══════════════════════════════════════════════════════════════════
+    containerEl.createEl("h3", { text: "X (Twitter)" });
+
+    new Setting(containerEl).setName("X bearer token")
+      .setDesc(s.xBearerToken
+        ? "Token saved. x.com URLs will fetch via X API v2 (pay-per-use)."
+        : "Optional. Without it, x.com URLs hit the sign-in wall and return little. Get one at https://developer.x.com → app → Keys & Tokens → Bearer Token.")
+      .addText((text) => {
+        text.inputEl.type = "password";
+        text.setPlaceholder("AAAA...").setValue(s.xBearerToken).onChange(async (v) => {
+          s.xBearerToken = v.trim();
+          await this.plugin.saveSettings();
+        });
+      });
+
+    // ═══════════════════════════════════════════════════════════════════
     containerEl.createEl("h3", { text: "Advanced" });
 
     new Setting(containerEl).setName("Max tool iterations")

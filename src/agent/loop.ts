@@ -113,7 +113,8 @@ export class DumpAgentLoop {
           this.app,
           tc.name!,
           tc.input!,
-          this.settings.dumpFolder
+          this.settings.dumpFolder,
+          this.settings.xBearerToken
         );
 
         callbacks.onToolResult(tc.name!, result);
