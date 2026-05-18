@@ -5,3 +5,6 @@ dist/
 data.json
 debug.log
 .DS_Store
+
+# Clawpatch local review state
+.clawpatch/
