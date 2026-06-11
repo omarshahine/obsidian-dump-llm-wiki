@@ -33,7 +33,7 @@ export class DumpSettingTab extends PluginSettingTab {
   display(): void {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: "Dump LLM Wiki" });
+    containerEl.createEl("h2", { text: "Dump" });
 
     const s = this.plugin.settings;
     const cliStatus = this.plugin.cliStatus;

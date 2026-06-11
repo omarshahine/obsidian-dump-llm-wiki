@@ -1,6 +1,6 @@
 {
   "id": "dump-llm-wiki",
-  "name": "Dump LLM Wiki",
+  "name": "Dump",
   "version": "1.0.0",
   "minAppVersion": "1.7.0",
   "description": "Dump URLs, podcasts, and text into a cross-linked knowledge base maintained by AI",

@@ -1,4 +1,4 @@
-# Dump (LLM Wiki)
+# Dump
 
 An Obsidian plugin that turns dumped URLs, podcasts, and text into a cross-linked wiki maintained by an AI agent.
 
@@ -69,7 +69,7 @@ Pick one of two modes — they're not mutually exclusive, you can configure both
 If you have [Claude Code](https://claude.ai/download) installed, the plugin will shell out to it for processing. This is the default and the most powerful option — Claude Code can use Read, Write, Edit, Glob, Grep, Bash, and WebFetch to maintain the wiki.
 
 1. Install Claude Code
-2. In Settings > Dump LLM Wiki, set "CLI tool" to Claude
+2. In Settings > Dump, set "CLI tool" to Claude
 3. Pick a model (Opus, Sonnet, or Haiku)
 
 No API key required. The plugin auto-detects the CLI on macOS, including Homebrew and nvm install paths.
@@ -78,7 +78,7 @@ No API key required. The plugin auto-detects the CLI on macOS, including Homebre
 
 If you'd rather use the Anthropic or OpenAI API directly:
 
-1. Open Settings > Dump LLM Wiki
+1. Open Settings > Dump
 2. Pick Anthropic or OpenAI
 3. Enter your API key (stored per-provider in your OS keychain via SecretStorage, never synced)
 4. Click the refresh icon next to Model to load available models from the API
