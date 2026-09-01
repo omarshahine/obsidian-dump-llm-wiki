@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "node esbuild.config.mjs",
     "build": "node esbuild.config.mjs production",
+    "typecheck": "tsc --noEmit",
     "release": "./scripts/release.sh"
   },
   "devDependencies": {

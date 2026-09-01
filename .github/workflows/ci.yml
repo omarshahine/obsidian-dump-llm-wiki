@@ -26,12 +26,19 @@ jobs:
     # 24, the version current users actually run. The shipped bundle is es2022 and
     # the build is esbuild-only, so this Node version governs the build toolchain;
     # it is not a compatibility matrix over the 20-24 range.
-    name: build (node 24)
+    name: "npm run ${{ matrix.check }} (node 24)"
+    strategy:
+      fail-fast: false
+      matrix:
+        # esbuild strips types without reading them, so `build` proves the
+        # bundle links and nothing about the types. `typecheck` is the entry
+        # that actually reads them; both run because either can fail alone.
+        check: [build, typecheck]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020  # v7
         with:
           node-version: '24'
           cache: npm
@@ -39,7 +46,4 @@ jobs:
       # package-lock.json is committed, so npm ci applies and a stale lockfile
       # fails the build rather than being silently repaired.
       - run: npm ci
-      # The only check script this package has. esbuild strips types without
-      # checking them, so this catches syntax and module-resolution breakage,
-      # not type errors. Per instructions, no new scripts were added.
-      - run: npm run build
+      - run: npm run ${{ matrix.check }}
