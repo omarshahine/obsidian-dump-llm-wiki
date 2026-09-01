@@ -40,3 +40,21 @@ updates:
           - "@types/*"
     commit-message:
       prefix: deps
+    ignore:
+      # @types/node is capped at ^22 on purpose, so decline the majors.
+      #
+      # This plugin is isDesktopOnly: true, so it runs in Obsidian's Electron
+      # renderer -- never in bare Node. The Node that Electron bundles is what
+      # the code actually gets: roughly 20 at manifest.json's minAppVersion
+      # (1.7.0) through 24 on current desktop (1.13.7 -> Electron 43.3.0 ->
+      # Node 24.18.1). There is no Obsidian anywhere that ships Node 26.
+      #
+      # tsconfig.json sets "types": ["node"] and src/services/claude-cli.ts
+      # genuinely needs it (require, child_process, process, Buffer), so unlike
+      # the sibling obsidian-share plugin this cannot simply be dropped --
+      # removing it produces 10 x TS2591. Capping is the remaining option:
+      # typing above the bundled Node lets tsc bless APIs the renderer lacks.
+      #
+      # Raise the cap when minAppVersion moves, not when @types/node ships.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
