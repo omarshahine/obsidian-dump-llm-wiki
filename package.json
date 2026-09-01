@@ -9,8 +9,8 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "esbuild": "^0.28.1",
-    "obsidian": "^1.7.2",
+    "esbuild": "^0.28.2",
+    "obsidian": "^1.13.1",
     "typescript": "^5.7.0"
   },
   "dependencies": {
