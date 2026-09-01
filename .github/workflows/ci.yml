@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  # One in-flight run per ref. github.ref is refs/pull/N/merge for PRs and
+  # refs/heads/main for pushes, so PR and main runs never share a group.
+  group: ci-${{ github.ref }}
+  # Cancel superseded runs on PRs only. Pushes to main run to completion so the
+  # green/red record for every commit on main survives a rapid follow-up push.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# These jobs only read the repository; nothing publishes or writes.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    # manifest.json sets isDesktopOnly: true, so this plugin only ever runs inside
+    # Obsidian desktop's Electron: Node 24.18.1 on Obsidian 1.13.7 (Electron 43.3.0),
+    # down to Node 20 at the declared minAppVersion 1.7.0 (Electron 30). Pinned to
+    # 24, the version current users actually run. The shipped bundle is es2022 and
+    # the build is esbuild-only, so this Node version governs the build toolchain;
+    # it is not a compatibility matrix over the 20-24 range.
+    name: build (node 24)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: package-lock.json
+      # package-lock.json is committed, so npm ci applies and a stale lockfile
+      # fails the build rather than being silently repaired.
+      - run: npm ci
+      # The only check script this package has. esbuild strips types without
+      # checking them, so this catches syntax and module-resolution breakage,
+      # not type errors. Per instructions, no new scripts were added.
+      - run: npm run build
