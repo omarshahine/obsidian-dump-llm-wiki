@@ -8,7 +8,7 @@
     "release": "./scripts/release.sh"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^26.4.0",
     "esbuild": "^0.28.1",
     "obsidian": "^1.7.2",
     "typescript": "^5.7.0"
